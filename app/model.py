@@ -38,7 +38,7 @@ class SentimentModel(nn.Module):
     
 model = SentimentModel(bert_model)
 
-model.load_state_dict(torch.load("model/sentiment_model.pth"))
+model.load_state_dict(torch.load("model/sentiment_model.pth", map_location=torch.device('cpu')))
 st.toast('Model Loaded Succesfully')
 
 if 'model' not in st.session_state:
