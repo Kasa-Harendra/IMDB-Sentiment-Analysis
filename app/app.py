@@ -1,6 +1,7 @@
 import streamlit as st
 import torch
-from model import predict_sentiment, get_model
+from model import predict_sentiment
+from model import get_model
 
 st.set_page_config(
     page_title="Sentiment Analysis App",
@@ -52,8 +53,8 @@ st.code(
             super(SentimentModel, self).__init__()
             self.bert = bert
             self.model_extrension = nn.Sequential(
-                nn.ReLU(),
                 nn.Linear(768, 384),
+                nn.Dropout(0.25),
                 nn.Linear(384, 1),
                 nn.Sigmoid()
             )
