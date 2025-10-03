@@ -2,8 +2,21 @@ import torch.nn as nn
 from transformers import AutoTokenizer, AutoModel
 import torch
 import streamlit as st
+import os
+import gdown
 
-st.session_state['tokenizer'] = AutoTokenizer.from_pretrained(pretrained_model_name_or_path="google-bert/bert-base-uncased")
+if not os.path.exists('model/sentiment_model.pth'):
+    os.makedirs(name='model', exist_ok=True)
+    
+    file_id = '1BnHzaWlTFaAic3gnm_1ALKzlZti642Wo'  
+    url = f'https://drive.google.com/uc?id={file_id}'
+    
+    st.toast('Downloading model')
+    
+    gdown.download(url, 'model/sentiment_model.pth', quiet=False)
+
+if 'tokenizer' not in st.session_state:
+    st.session_state['tokenizer'] = AutoTokenizer.from_pretrained(pretrained_model_name_or_path="google-bert/bert-base-uncased")
 bert_model = AutoModel.from_pretrained(pretrained_model_name_or_path="google-bert/bert-base-uncased")
 
 class SentimentModel(nn.Module):
@@ -25,7 +38,8 @@ class SentimentModel(nn.Module):
     
 model = SentimentModel(bert_model)
 
-model.load_state_dict(torch.load("sentiment_model.pth"))
+model.load_state_dict(torch.load("model/sentiment_model.pth"))
+st.toast('Model Loaded Succesfully')
 
 if 'model' not in st.session_state:
     st.session_state['model'] = model 
