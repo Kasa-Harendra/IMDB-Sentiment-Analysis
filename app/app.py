@@ -6,7 +6,7 @@ st.set_page_config(
     page_title="Sentiment Analysis App",
     page_icon="🎭",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
     menu_items={
         'Get Help': 'https://github.com/Kasa-Harendra/sentiment-analysis',
         'About': "# Sentiment Analysis App\nBuilt with PyTorch and Streamlit"
