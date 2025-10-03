@@ -23,7 +23,7 @@ sentiment = st.text_input("Enter the text...")
 if 'model' not in st.session_state:
     st.session_state['model'] = get_model()
 
-if 'tokenizer' not in st.session_state
+if 'tokenizer' not in st.session_state:
     st.session_state['tokenizer'] = get_tokenizer()
 
 if st.button(label="Classify"):
