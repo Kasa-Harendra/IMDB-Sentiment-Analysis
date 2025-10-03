@@ -2,8 +2,18 @@ import streamlit as st
 import torch
 from model import predict_sentiment
 
-st.title("Sentiment Analysis")
+st.set_page_config(
+    page_title="Sentiment Analysis App",
+    page_icon="🎭",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://github.com/Kasa-Harendra/sentiment-analysis',
+        'About': "# Sentiment Analysis App\nBuilt with PyTorch and Streamlit"
+    }
+)
 
+st.title("Sentiment Analysis")
 
 st.header("Model Prediction")
 sentiment = st.text_input("Enter the text...")
