@@ -43,6 +43,9 @@ def get_model():
     st.toast('Model Loaded Succesfully')
     return model
 
+model.load_state_dict(torch.load("model/sentiment_model.pth", map_location=torch.device('cpu')))
+st.toast('Model Loaded Succesfully')
+
 def predict_sentiment(text):
     st.session_state['model'].eval()
     with torch.no_grad():
@@ -55,7 +58,7 @@ def predict_sentiment(text):
         )
         input_ids = encoded['input_ids']
         attention_mask = encoded['attention_mask']
-        output = model(input_ids, attention_mask)
+        output = st.session_state['model'](input_ids, attention_mask)
         confidence = output.item()
         pred = (output > 0.5).float().item()
     
