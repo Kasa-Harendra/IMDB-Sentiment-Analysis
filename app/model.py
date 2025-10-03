@@ -43,6 +43,10 @@ def get_model():
     st.toast('Model Loaded Succesfully')
     return model
 
+def get_tokenizer():
+    tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path="google-bert/bert-base-uncased")
+    return tokenizer
+
 def predict_sentiment(text):
     st.session_state['model'].eval()
     with torch.no_grad():

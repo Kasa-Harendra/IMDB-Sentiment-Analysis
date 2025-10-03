@@ -2,6 +2,7 @@ import streamlit as st
 import torch
 from model import predict_sentiment
 from model import get_model
+from model import get_tokenizer
 
 st.set_page_config(
     page_title="Sentiment Analysis App",
@@ -21,6 +22,9 @@ sentiment = st.text_input("Enter the text...")
 
 if 'model' not in st.session_state:
     st.session_state['model'] = get_model()
+
+if 'tokenizer' not in st.session_state
+    st.session_state['tokenizer'] = get_tokenizer()
 
 if st.button(label="Classify"):
     if sentiment.strip():
