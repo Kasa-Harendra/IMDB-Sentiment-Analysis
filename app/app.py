@@ -15,7 +15,7 @@ st.set_page_config(
     }
 )
 
-st.title("Sentiment Analysis")
+st.title("IMDB Sentiment Analysis")
 
 st.header("Model Prediction")
 sentiment = st.text_input("Enter the text...")
@@ -206,6 +206,7 @@ SentimentModel(
                 (activation): Tanh()
             )
         )
+    )
     (model_extension): Sequential(
         (0): Linear(in_features=768, out_features=384, bias=True)
         (1): Dropout(p=0.25, inplace=False)
