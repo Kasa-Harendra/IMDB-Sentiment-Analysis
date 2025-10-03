@@ -36,13 +36,12 @@ class SentimentModel(nn.Module):
         return output
 
     
-model = SentimentModel(bert_model)
 
-model.load_state_dict(torch.load("model/sentiment_model.pth", map_location=torch.device('cpu')))
-st.toast('Model Loaded Succesfully')
-
-if 'model' not in st.session_state:
-    st.session_state['model'] = model 
+def get_model():
+    model = SentimentModel(bert_model)
+    model.load_state_dict(torch.load("model/sentiment_model.pth", map_location=torch.device('cpu')))
+    st.toast('Model Loaded Succesfully')
+    return model
 
 def predict_sentiment(text):
     st.session_state['model'].eval()

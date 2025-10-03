@@ -1,6 +1,6 @@
 import streamlit as st
 import torch
-from model import predict_sentiment
+from model import predict_sentiment, get_model
 
 st.set_page_config(
     page_title="Sentiment Analysis App",
@@ -8,7 +8,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
     menu_items={
-        'Get Help': 'https://github.com/Kasa-Harendra/sentiment-analysis',
+        'Get Help': 'https://github.com/Kasa-Harendra/IMDB-sentiment-analysis',
         'About': "# Sentiment Analysis App\nBuilt with PyTorch and Streamlit"
     }
 )
@@ -17,6 +17,9 @@ st.title("Sentiment Analysis")
 
 st.header("Model Prediction")
 sentiment = st.text_input("Enter the text...")
+
+if 'model' not in st.session_state:
+    st.session_state['model'] = get_model()
 
 if st.button(label="Classify"):
     if sentiment.strip():
